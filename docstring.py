@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-'''
+"""
 Created on 2012-05-25 14:38
 @summary: a python docstring plugin for sublime text 2
 @author: JerryKwan
 @contact: Jinzhong.Guan@gmail.com
-'''
+"""
 
 
 import sublime
@@ -14,10 +14,11 @@ import datetime
 import getpass
 import os.path
 
+
 def construct_module_docstring():
-    '''
+    """
     @summary: construct the module docstring
-    '''
+    """
     docstring = "# -*- coding: utf-8 -*-\n"
     docstring += "'''\n"
     docstring += "Created on %s\n"
@@ -29,27 +30,34 @@ def construct_module_docstring():
 
 
 def construct_docstring(declaration, indent = 0):
-    '''
-    @summary: construct docstring according to the declaration
-    @param declaration: the result of parse_declaration() reurns
-    @param indent: the indent space number
-    '''
+    """
+    <1 line summary>
+
+    Args:
+        declaration:
+        indent:
+
+    Returns:
+    """
+
     docstring = ""
     try:
         typename, name, params = declaration
         lines = []
-        lines.append("'''\n")
-        lines.append("@summary: \n")
+        lines.append('"""\n')
+        lines.append("<1 line summary>\n")
         # lines.append("\n")
         if typename == "class":
             pass
         elif typename == "def":
             if len(params):
+                lines.append("\n")
+                lines.append("Args:\n")
                 for param in params:
-                    lines.append("@param %s:\n"%(param))
-                # lines.append("\n")
-            lines.append("@result: \n")
-        lines.append("'''\n")
+                    lines.append("    %s:\n"%(param))
+                lines.append("\n")
+            lines.append("Returns: \n")
+        lines.append('"""\n')
 
         for line in lines:
             docstring += " " * indent + line
