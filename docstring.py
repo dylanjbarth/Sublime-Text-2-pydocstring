@@ -19,19 +19,12 @@ def construct_module_docstring():
     """
     @summary: construct the module docstring
     """
-    docstring = "# -*- coding: utf-8 -*-\n"
-    docstring += "'''\n"
-    docstring += "Created on %s\n"
-    docstring += "@summary: \n"
-    docstring += "@author: %s\n"
-    docstring += "'''\n\n"
-    docstring = docstring % (datetime.datetime.now().strftime("%Y-%m-%d %H:%M"), getpass.getuser())
+    docstring = '"""<insert module docstring>"""'
     return docstring
 
 
 def construct_docstring(declaration, indent = 0):
-    """
-    <1 line summary>
+    """<1 line summary>
 
     Args:
         declaration:
@@ -44,8 +37,7 @@ def construct_docstring(declaration, indent = 0):
     try:
         typename, name, params = declaration
         lines = []
-        lines.append('"""\n')
-        lines.append("<1 line summary>\n")
+        lines.append('"""<1 line summary>\n')
         # lines.append("\n")
         if typename == "class":
             pass
